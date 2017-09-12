@@ -61,7 +61,7 @@ public class StudentController {
         student.setClassName(className);
         student.setRollNumber(rollNumber);
         student.setStatus(status);
-        student.setId(System.currentTimeMillis());
+        student.setId(12);
         // Lưu thông tin sinh viên vào db.
         studentModel.insert(student);
     }
@@ -180,5 +180,17 @@ public class StudentController {
             System.out.println(e.getMessage());
         }
         return result;
+    }
+
+    public void exportToFile() {
+        if (studentModel.getListStudent() == null) {
+            System.out.println("List student is empty, nothing for export !!!");
+        } else {
+             
+        }
+    }
+
+    public void importFromFile() {
+
     }
 }

@@ -10,6 +10,7 @@ import java.util.Scanner;
 /**
  *
  * @author dong
+ * @since 9/9/2017
  */
 public class MenuConsole {
 
@@ -20,23 +21,26 @@ public class MenuConsole {
     }
 
     public void createMenu() {
-        loopMenu:
         for (;;) {
             System.out.println("=========Student Manager========");
             System.out.println("1. Student list.");
             System.out.println("2. Add student.");
             System.out.println("3. Edit student.");
             System.out.println("4. Delete student.");
-            System.out.println("5. Exit.");
+            System.out.println("5. Export to file.");
+            System.out.println("5. Import from file.");
             System.out.println("===========================");
             System.out.println("Please enter your choice: ");
             Scanner scan = new Scanner(System.in);
-            // Yêu cầu người dùng nhập chuỗi ký tự, gán giá trị người dùng nhập vào
+
+            // Yêu cầu người dùng nhập chuỗi ký tự, gán giá trị người dùng nhập vào.
             // ra biến kiểu chuỗi strChoice.
             String strChoice = scan.nextLine();
+
             // Kiểm tra dữ liệu người dùng nhập vào có là số hay không ?
             // Trong trường hợp không phải là số thì in ra thông báo cho người dùng và bắt đầu lại
             int choice;
+            
             try {
                 // Ép kiểu của biến strChoice về int.
                 choice = Integer.parseInt(strChoice);
@@ -45,7 +49,9 @@ public class MenuConsole {
                 System.err.println("Please enter a number.");
                 continue;
             }
+            
             StudentController studentController = new StudentController();
+            
             switch (choice) {
                 case 1:
                     studentController.getList();
@@ -60,9 +66,13 @@ public class MenuConsole {
                     studentController.deleteStudent();
                     break;
                 case 5:
-                    break loopMenu;
+                    studentController.exportToFile();
+                    break;
+                case 6:
+                    studentController.importFromFile();
+                    break;
                 default:
-                    System.err.println("Please enter number from 1 to 5.");
+                    System.err.println("Please enter number from 1 to 6.");
                     break;
             }
 
